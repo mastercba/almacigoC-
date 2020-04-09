@@ -31,7 +31,7 @@ void setup(){
             pinMode(riego,  OUTPUT); digitalWrite(riego,  OFF);
             pinMode(mezcla, OUTPUT); digitalWrite(mezcla, OFF);
             pinMode(nutre,  OUTPUT); digitalWrite(nutre,  OFF); 
-
+            pinMode(LED_BLUE, OUTPUT); digitalWrite(LED_BLUE, HIGH);
         //WATCHdog
             watchdogTimer = timerBegin(myTimer, 80, true);      //timer 0 divisor 80
             timerAlarmWrite(watchdogTimer, 700000000, false);     //60000000--> 1min
@@ -47,7 +47,12 @@ void setup(){
 void loop(){
         // Reset WDCounter -----------------------------------------------------         //WATCHdog
               timerWrite(watchdogTimer, 0);              // reset timer feed dog
-
+        // blueLED interval ----------------------------------------------------  
+                if (millis() - prevMillis > interval) {
+                  ledState = !ledState;
+                  digitalWrite(LED_BLUE, ledState);
+                  prevMillis = millis();
+                }
 
 
 

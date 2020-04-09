@@ -28,6 +28,9 @@
         //WDT WATCHdog
             hw_timer_t *watchdogTimer = NULL;
             byte myTimer = 1; //0 | 1 | 2 |3
-        
+        //LEDstate
+            long prevMillis = 0;
+            int interval = 1000;
+            boolean ledState = false;        
 
 //-----------------------------------------------------------------------------
