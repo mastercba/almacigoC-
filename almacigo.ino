@@ -2,7 +2,9 @@
  *  almacigo TTGO-CALL
  */
 
+ #include "Adafruit_FONA.h"
  #include "variables.h"
+ #include "sim800.h"
  #include <string.h>
  #include <stdio.h>
  #include <stdlib.h> 
@@ -26,12 +28,16 @@ void setup(){
             looptime = millis(); Serial.println(millis());
             Serial.println("Setup Loop Running.....");
         
-        //init RELAY
+        //init GPIOS & RELAY
             pinMode(water,  OUTPUT); digitalWrite(water,  OFF);
             pinMode(riego,  OUTPUT); digitalWrite(riego,  OFF);
             pinMode(mezcla, OUTPUT); digitalWrite(mezcla, OFF);
             pinMode(nutre,  OUTPUT); digitalWrite(nutre,  OFF); 
             pinMode(LED_BLUE, OUTPUT); digitalWrite(LED_BLUE, HIGH);
+            pinMode(SIM800L_POWER, OUTPUT); digitalWrite(SIM800L_POWER, HIGH);
+        //init SIM800L GPRS    
+              initGPRS();
+
         //WATCHdog
             watchdogTimer = timerBegin(myTimer, 80, true);      //timer 0 divisor 80
             timerAlarmWrite(watchdogTimer, 700000000, false);     //60000000--> 1min

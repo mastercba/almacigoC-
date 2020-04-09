@@ -32,5 +32,9 @@
             long prevMillis = 0;
             int interval = 1000;
             boolean ledState = false;        
-
+        //GPRS Module init    
+            HardwareSerial *sim800lSerial = &Serial1;
+            Adafruit_FONA sim800l = Adafruit_FONA(SIM800L_PWRKEY);
+            uint8_t readline(char *buff, uint8_t maxbuff, uint16_t timeout = 0);
+            
 //-----------------------------------------------------------------------------
