@@ -6,6 +6,7 @@
  #include "variables.h"
  #include "sensores.h"
  #include "sim800.h"
+ #include "servicios.h"
  #include <string.h>
  #include <stdio.h>
  #include <stdlib.h> 
@@ -41,6 +42,8 @@ void setup(){
               initGPRS();
         //set system clock & date        
               SetTimeDate();                                      //set time and date from operator
+        // Cerrar Servo Valvula
+              iniciaValvula();
         //WATCHdog
             watchdogTimer = timerBegin(myTimer, 80, true);      //timer 0 divisor 80
             timerAlarmWrite(watchdogTimer, 700000000, false);     //60000000--> 1min
