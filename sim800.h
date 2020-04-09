@@ -26,3 +26,49 @@ void initGPRS(){
         Serial.println("GSM SIM800L Ready");
 }
 //--------------------------------------------------------------------------------------------
+void SetTimeDate(){
+      Serial.println("Set Time&Date.....");
+
+    // enableNetworkTimeSync
+        if (!sim800l.enableNetworkTimeSync(true)){
+          Serial.println(F("Failed to enableNetworkTimeSync")); 
+          digitalWrite(SIM800L_POWER, HIGH);
+          delay(10000);
+          esp_restart();
+        }
+        delay(5000);
+    // enable NTP time sync
+        if (!sim800l.enableNTPTimeSync(true, F("pool.ntp.org"))){
+          Serial.println(F("Failed to enableNTPTimeSync"));
+          digitalWrite(SIM800L_POWER, HIGH);
+          delay(10000);
+          esp_restart();          
+        }
+        delay(5000);            
+    // Get time!    
+        char gTime[23];
+        sim800l.getTime(gTime, 23);  // make sure replybuffer is at least 23 bytes!
+        Serial.print(F("Time = ")); Serial.println(gTime);  
+
+            sim800lSerial->print("AT+SAPBR=3,1,\"Contype\",\"GPRS\"\r\n"); delay(5000); 
+            sim800lSerial->print("AT+SAPBR=3,1,\"APN\",\"3GNET\"\r\n"); delay(5000);             
+            //GSM.println("AT+SAPBR=3,1,\"APN\",\"entel.bo\"");
+            //delay(5000); SSD(); // 
+            sim800lSerial->print("AT+SAPBR=1,1\r\n"); delay(5000);
+            sim800lSerial->print("AT+SAPBR=2,1\r\n"); delay(5000);            
+           
+            sim800lSerial->print("AT+CNTPCID=1\r\n"); delay(5000);        
+            sim800lSerial->print("AT+CNTP=\"88.147.254.227\",-16\r\n"); delay(5000);               
+            sim800lSerial->print("AT+CNTP?\r\n"); delay(5000);
+            sim800lSerial->print("AT+CNTP\r\n"); delay(5000);
+            //GSM.println("AT+CTZU=1"); delay(5000); SSD(); //    
+
+            sim800lSerial->print("AT+CLTS=1\r\n"); delay(5000); 
+            sim800lSerial->print("AT+CENG=3\r\n"); delay(5000);
+
+    // Get time!    
+        char gTime1[23];
+        sim800l.getTime(gTime1, 23);  // make sure replybuffer is at least 23 bytes!
+        Serial.print(F("Time1 = ")); Serial.println(gTime1);
+}
+//--------------------------------------------------------------------------------------------

@@ -37,7 +37,8 @@ void setup(){
             pinMode(SIM800L_POWER, OUTPUT); digitalWrite(SIM800L_POWER, HIGH);
         //init SIM800L GPRS    
               initGPRS();
-
+        //set system clock & date        
+              SetTimeDate();                                      //set time and date from operator
         //WATCHdog
             watchdogTimer = timerBegin(myTimer, 80, true);      //timer 0 divisor 80
             timerAlarmWrite(watchdogTimer, 700000000, false);     //60000000--> 1min
