@@ -25,6 +25,7 @@
 void setup(){
         //init serial ports  
             Serial.begin(115200);  delay(10);            // the PC<->ESP32 baud rate
+            Wire.begin(21,22,400000); //Wire.begin(18,19,400000);  Wire.begin(sda,scl,BusSpeed);
         //init internal SETUP counter control!  
             looptime = millis(); Serial.println(millis());
             Serial.println("Setup Loop Running.....");
@@ -70,6 +71,10 @@ void loop(){
         // DS18B20 temperature sensor ------------------------------------------
               Serial.print("Temperature: "); tempAguaTanque = readTemp();
               Serial.println(tempAguaTanque);         
+              delay(10);
+        // EC,TDS,SAL,SG Water Quality sensor ----------------------------------
+              Serial.print("TDS: "); char* tds = waterQuality();
+              Serial.println(tds);        
               delay(10);
 
 
