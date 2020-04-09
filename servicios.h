@@ -5,13 +5,13 @@ void svcRiego()
     int tr = 0;
     // Riego!
     Serial.println("Riego en proceso...!");
-    digitalWrite(26,  ON); 
+    digitalWrite(riego,  ON); 
     do{
       delay(100);
       tr++;                  
     }while(tr <= 4000 );          //500 son 51seg (aprox 1')
     // Apago riego!
-    digitalWrite(26,  OFF);        
+    digitalWrite(riego,  OFF);        
 }
 //---------------------------------------------------------------------------------------
 void svcMezcla()
@@ -20,12 +20,12 @@ void svcMezcla()
     int tm = 0;
     Serial.println("Mezcla en proceso...!");
     // Mezcla ON!    
-    digitalWrite(27,  ON);
+    digitalWrite(mezcla,  ON);
     do{
       delay(100); tm++;                  
     }while(tm <= 2000 );          //500 son 51seg (aprox 1')            
     // Apago mezcla!
-    digitalWrite(27,  OFF);     
+    digitalWrite(mezcla,  OFF);     
 }
 //---------------------------------------------------------------------------------------
         void svcDosi()  
@@ -34,12 +34,12 @@ void svcMezcla()
             int rd = 0;
             Serial.println("Dosificando A&B...!");
             // dosificadores ON!    
-            digitalWrite(14,  ON);
+            digitalWrite(nutre,  ON);
             do{  
               delay(100); rd++;                  
             }while(rd <= 250 );           //500 son 51seg (aprox 1')           
             // dosificadores OFF! 
-            digitalWrite(14,  OFF);    
+            digitalWrite(nutre,  OFF);    
         }
 //---------------------------------------------------------------------------------------
 void iniciaValvula(){

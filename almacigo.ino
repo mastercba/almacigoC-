@@ -2,6 +2,7 @@
  *  almacigo TTGO-CALL
  */
 
+ #include <ESP32Servo.h>
  #include "Adafruit_FONA.h"
  #include "variables.h"
  #include "sensores.h"
