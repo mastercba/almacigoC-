@@ -11,6 +11,7 @@
             #define OFF HIGH
             #define ON  LOW
             #define addrs 100                   // TDS Sensor Address
+            Servo valvula;           // Create object for servo motor
               #define SIM800L_RX     27
               #define SIM800L_TX     26
               #define SIM800L_PWRKEY 4
@@ -57,5 +58,7 @@
                 String stringSAL = ""; String stringSG = "";
             char ecTEXT[]="EC:"; char tdsTEXT[]=" - TDS:";  
             char salTEXT[]=" - SAL:";  char sgTEXT[]=" - SG:";
+        //ServoValvula
+            static const int servoPin = 2;  // defines pin number for PWM
 
 //-----------------------------------------------------------------------------
