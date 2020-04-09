@@ -49,7 +49,7 @@ void setup(){
             looptime = millis() - looptime;
             Serial.print("Time in loop: "); Serial.print(looptime); Serial.println("ms \n\n");
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////// 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 void loop(){
         // Reset WDCounter -----------------------------------------------------         //WATCHdog
@@ -63,7 +63,34 @@ void loop(){
         // Time request --------------------------------------------------------
               timeRequest(); delay(500);
               if(Year <= 18){SetTimeDate(); timeRequest();}
-
+        // Rutina diaria (un solo riego 4:30am) --------------------------------
+              if( Hr == 4 && Min == 30 ){
+                // 1.- llenar tanque H2O - //mezclar y regar - lavar bandejas
+                        //srvWater();
+                // 2.- mezclar tanque y nutrientes  A&B
+                        //svcMezcla();
+                // 3.- dosifico A&B
+                        //svcDosi();
+                // 4.- mezclar - ON!
+                        //digitalWrite(mezcla,  ON);
+                // 5.- vacio bandejas
+                        //abrirValvula(); delay(90000); cerrarValvula();
+                // 6.- mezclar - OFF!
+                        //digitalWrite(mezcla,  OFF);
+                // 7.- reporta
+                        //timeRequest(); delay(100);
+                        //if(Year <= 18){SetTimeDate(); timeRequest();}
+                        //  String h="";                    String m="";
+                        //  h+=(String)Hr;                  m+=(String)Min;
+                        //  char ho[h.length()+1];          char mi[m.length()+1];
+                        //  h.toCharArray(ho,h.length()+1); m.toCharArray(mi,m.length()+1);
+//                          Send_To_Modem(Mobile_No); delay(1000);
+//                          Send_To_Modem (strcat((strcat((strcat((strcat
+//                                          (ho, dots)),mi)),bs)),ok));
+//                          GSM.write(0x1A);
+                // 8.- riego
+                        //svcRiego();
+              }else{}
 
 
         delay(5000);                    
