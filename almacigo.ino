@@ -60,10 +60,12 @@ void loop(){
                   digitalWrite(LED_BLUE, ledState);
                   prevMillis = millis();
                 }
+        // Time request --------------------------------------------------------
+              timeRequest(); delay(500);
+              if(Year <= 18){SetTimeDate(); timeRequest();}
 
 
 
-
-        delay(15000);                    
+        delay(5000);                    
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -3,9 +3,9 @@
 
 
 
-// init GPRS-SIM800L Module 
+
 //--------------------------------------------------------------------------------------------
-void initGPRS(){
+void initGPRS(){                                                   // init GPRS-SIM800L Module 
       Serial.println("ON && Init SIM800L module.....");
 	  	delay(10000);
 
@@ -26,7 +26,7 @@ void initGPRS(){
         Serial.println("GSM SIM800L Ready");
 }
 //--------------------------------------------------------------------------------------------
-void SetTimeDate(){
+void SetTimeDate(){                                                         // Set Time & Date 
       Serial.println("Set Time&Date.....");
 
     // enableNetworkTimeSync
@@ -70,5 +70,33 @@ void SetTimeDate(){
         char gTime1[23];
         sim800l.getTime(gTime1, 23);  // make sure replybuffer is at least 23 bytes!
         Serial.print(F("Time1 = ")); Serial.println(gTime1);
+}
+//--------------------------------------------------------------------------------------------
+void timeRequest()												           // UPDATE Time&Date
+{ 
+      Serial.println("update Time.....");
+      at =""; 
+    // Get time!
+        sim800lSerial->print("AT+CCLK?\r\n");
+        while(!sim800l.available())
+        {delay(50);}
+        while (sim800l.available())
+        {
+          char timeBuffer = sim800l.read();
+          at += timeBuffer;
+        }
+        Serial.println (at);
+    if (  at.indexOf("+CCLK: ") > -1   ) { 
+      Date = at.substring(at.indexOf("+CCLK: ")+8, at.indexOf("+CCLK: ")+16);         //дата
+      Hr =   at.substring(at.indexOf("+CCLK: ")+17, at.indexOf("+CCLK: ")+19).toInt(); //часы 
+      Min =  at.substring(at.indexOf("+CCLK: ")+20, at.indexOf("+CCLK: ")+22).toInt(); //минуты
+      Sec =  at.substring(at.indexOf("+CCLK: ")+23, at.indexOf("+CCLK: ")+25).toInt(); //секунды
+      Year = at.substring(at.indexOf("+CCLK: ")+8, at.indexOf("+CCLK: ")+10).toInt();
+    }
+        Serial.print ("Date  "),Serial.println (Date);
+        Serial.print ("Hr  "),  Serial.println (Hr);
+        Serial.print ("Min  "), Serial.println (Min); 
+        Serial.print ("Sec  "), Serial.println (Sec);
+        Serial.print ("Year  "), Serial.println (Year); 
 }
 //--------------------------------------------------------------------------------------------
