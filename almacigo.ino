@@ -67,6 +67,10 @@ void loop(){
         // WaterLevel sensor ---------------------------------------------------
               nivelAgua = waterLevelStatus();                  //1:empty  0:full        
               delay(10);
+        // DS18B20 temperature sensor ------------------------------------------
+              Serial.print("Temperature: "); tempAguaTanque = readTemp();
+              Serial.println(tempAguaTanque);         
+              delay(10);
 
 
         delay(5000);                    

@@ -41,5 +41,7 @@
             int Sec; int Min; int Hr; int Year; int Month; int Day;
         // Nivel de Agua del tanque de riego
             int nivelAgua ;  char waterResult[6];
-                        
+        // DS18B20 Temperature Sensor
+            float tempAguaTanque ;
+
 //-----------------------------------------------------------------------------
