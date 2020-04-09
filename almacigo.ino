@@ -4,6 +4,7 @@
 
  #include "Adafruit_FONA.h"
  #include "variables.h"
+ #include "sensores.h"
  #include "sim800.h"
  #include <string.h>
  #include <stdio.h>
@@ -63,7 +64,9 @@ void loop(){
         // Time request --------------------------------------------------------
               timeRequest(); delay(500);
               if(Year <= 18){SetTimeDate(); timeRequest();}
-
+        // WaterLevel sensor ---------------------------------------------------
+              nivelAgua = waterLevelStatus();                  //1:empty  0:full        
+              delay(10);
 
 
         delay(5000);                    
