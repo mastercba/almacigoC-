@@ -39,5 +39,23 @@
         // Time&Date Vars
             String at = ""; String Date; 
             int Sec; int Min; int Hr; int Year; int Month; int Day;
-            
+        // Nivel de Agua del tanque de riego
+            int nivelAgua ;  char waterResult[6];
+        // DS18B20 Temperature Sensor
+            float tempAguaTanque ;
+        //Water Quality Sensor
+            byte code = 0;      //used to hold the I2C response code.
+            char ec_data[48];   //
+            byte in_char = 0;   //
+            byte ii = 0;        //counter used for ec_data array.
+            int delay_time = 4000;
+            char computerdata[20];
+            char *ec; char *tds;  
+            char *sal; char *sg;   
+            char charTDS[]="";
+                String stringEC = ""; String stringTDS = ""; 
+                String stringSAL = ""; String stringSG = "";
+            char ecTEXT[]="EC:"; char tdsTEXT[]=" - TDS:";  
+            char salTEXT[]=" - SAL:";  char sgTEXT[]=" - SG:";
+
 //-----------------------------------------------------------------------------
